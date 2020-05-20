@@ -127,3 +127,25 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
++# No JetBrains
++.idea/
++
++# No Files Ending in Tilde
++*~
++
++# Ignore file
++device_loader-logs.txt
++prefix_list_loader-logs.txt
++package_tools-logs.txt
++PipFile.lock
++desktop.ini
++
++# Ignore VSCode settings
++.vscode/
++
++# Ignore MAC DS_Store trail
++.DS_Store
++
++# Ignore Vi swap files
++*.swp
