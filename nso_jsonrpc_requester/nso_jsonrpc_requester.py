@@ -21,6 +21,25 @@ LOGGER = logging.getLogger('nso_jsonrpc')
 class NsoJsonRpcCommon(object):
     """
     This class is used as a parent for other NSO JsonRPC API classes for common needs
+
+    :type protocol: String
+    :param protocol: ('http', 'https') Default: http
+    :type ip: String
+    :param ip: IPv4 Address or hostname Default: 127.0.0.1
+    :type port: String
+    :param port: A protocol port Default: 8080
+    :type username: String
+    :param username: The username to use Default: admin
+    :type password: String
+    :param password: The password to use Default: admin
+    :type ssl_verify: Boolean
+    :param ssl_verify: Choice to verify SSL Cer Default: True
+
+    :rtype: None
+    :returns: None
+
+    :rasies TypeError: If protocol is not ('http', 'https')
+
     """
 
     def __init__(self, protocol='http', ip='127.0.0.1', port='8080', username='admin', password='admin',
@@ -333,6 +352,25 @@ class NsoJsonRpcCommon(object):
 class NsoJsonRpcComet(NsoJsonRpcCommon):
     """
     This class is used for the NSO JsonRPC API for remote logging
+
+    :type protocol: String
+    :param protocol: ('http', 'https') Default: http
+    :type ip: String
+    :param ip: IPv4 Address or hostname Default: 127.0.0.1
+    :type port: String
+    :param port: A protocol port Default: 8080
+    :type username: String
+    :param username: The username to use Default: admin
+    :type password: String
+    :param password: The password to use Default: admin
+    :type ssl_verify: Boolean
+    :param ssl_verify: Choice to verify SSL Cer Default: True
+
+    :rtype: None
+    :returns: None
+
+    :rasies TypeError: If protocol is not ('http', 'https')
+
     """
 
     def __init__(self, protocol='http', ip='127.0.0.1', port='8080', username='admin', password='admin',
@@ -668,6 +706,25 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
 class NsoJsonRpcConfig(NsoJsonRpcCommon):
     """
     This class is used for the NSO JsonRPC API for configuration
+
+    :type protocol: String
+    :param protocol: ('http', 'https') Default: http
+    :type ip: String
+    :param ip: IPv4 Address or hostname Default: 127.0.0.1
+    :type port: String
+    :param port: A protocol port Default: 8080
+    :type username: String
+    :param username: The username to use Default: admin
+    :type password: String
+    :param password: The password to use Default: admin
+    :type ssl_verify: Boolean
+    :param ssl_verify: Choice to verify SSL Cer Default: True
+
+    :rtype: None
+    :returns: None
+
+    :rasies TypeError: If protocol is not ('http', 'https')
+
     """
 
     def __init__(self, protocol='http', ip='127.0.0.1', port='8080', username='admin', password='admin',
@@ -680,12 +737,23 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
     def show_config(self, path, result_as='string', with_oper=False, max_size=0):
         """
         Method to send a show_config post
-        :param path: The NSO path to the data
-        :param result_as: {'string', 'json'} default string
-        :param with_oper: Boolean default False
-        :param max_size: Integer default 0, 0 = disable limit
-        :return:
-            Dictionary
+
+        :type path: String
+        :param path: The NSO XPATH to the data
+        :type result_as: String
+        :param result_as: ('string', 'json') Defualt: string
+        :type with_oper: Boolean
+        :param with_oper: Default: False
+        :type max_size: Integer
+        :param max_size: Default: 0, 0 = disable limit
+
+        :rtype: Dict
+        :return: A dictionary of data
+
+        :raises TypeError: if path is not a string
+        :raises KeyError: if result_as is not ('string', 'json')
+        :raises TypeError: if with_oper is not boolean
+        :raises TypeError: if max_size is not integer
 
         """
         if not isinstance(path, str):
@@ -722,10 +790,17 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
     def deref(self, path, result_as='paths'):
         """
         Method to send a deref post
-        :param path: The NSO path to the data
-        :param result_as: {'paths', 'target', 'list-target'} default paths
-        :return:
-            Dictionary
+
+        :type path: String
+        :param path: The NSO XPATH to the data
+        :type result_as: String
+        :param result_as: ('paths', 'target', 'list-target') Default: paths
+
+        :rtype: Dict
+        :return: A dictionary of data
+
+        :raises TypeError: if path is not a string
+        :raises KeyError: if result_as is not ('paths', 'target', 'list-target')
 
         """
         if not isinstance(path, str):
@@ -754,11 +829,20 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
     def get_leafref_values(self, path, skip_grouping=False, keys=None):
         """
         Method to send a get_leafref_values post
-        :param path: The NSO path to the data
-        :param skip_grouping: Boolean default False
-        :param keys:
-        :return:
-            Dictionary
+
+        :type path: String
+        :param path: The NSO XPATH to the data
+        :type skip_grouping: Boolean
+        :param skip_grouping: Default: False
+        :type keys: List
+        :param keys: A list of keys
+
+        :rtype: Dict
+        :return: A dictionary of data
+
+        :raises TypeError: if path is not a string
+        :raises TypeError: if skip_grouping is not boolean
+        :raises TypeError: if keys is not a list
 
         """
         if not isinstance(path, str):
@@ -802,10 +886,17 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
     def run_action(self, path, input_data=None):
         """
         Method to send a run_action post
-        :param path: The NSO path to the data
+
+        :type path: String
+        :param path: The NSO XPATH to the data
+        :type input_data: Dict
         :param input_data: A Dictionary of inputs
-        :return:
-            Dictionary
+
+        :rtype: Dict
+        :return: A dictionary of data
+
+        :raises TypeError: if path is not a string
+        :raises TypeError: if input_data is not a dict
 
         """
         if not isinstance(path, str):
@@ -845,9 +936,14 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
     def get_schema(self, path):
         """
         Method to send a get_schema post
-        :param path: The NSO path to the data
-        :return:
-            Dictionary
+
+        :type path: String
+        :param path: The NSO XPATH to the data
+
+        :rtype: Dict
+        :return: A dictionary of data
+
+        :raises TypeError: if path is not a string
 
         """
         if not isinstance(path, str):
@@ -872,9 +968,14 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
     def get_list_keys(self, path):
         """
         Method to send a get_list_keys post
-        :param path: The NSO path to the data
-        :return:
-            Dictionary
+
+        :type path: String
+        :param path: The NSO XPATH to the data
+
+        :rtype: Dict
+        :return: A dictionary of data
+
+        :raises TypeError: if path is not a string
 
         """
         if not isinstance(path, str):
@@ -899,10 +1000,17 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
     def get_value(self, path, check_default=False):
         """
         Method to send a get_value post retrieves a single value
-        :param path: The NSO path to the data
-        :param check_default: Boolean default False
-        :return:
-            Dictionary
+
+        :type path: String
+        :param path: The NSO XPATH to the data
+        :type check_default: Boolean
+        :param check_default: Default: False
+
+        :rtype: Dict
+        :return: A dictionary of data
+
+        :raises TypeError: if path is not a string
+        :raises TypeError: if check_default is not boolean
 
         """
         if not isinstance(path, str):
