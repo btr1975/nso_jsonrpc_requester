@@ -10,7 +10,7 @@ Welcome to nso_jsonrpc_requester's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   source/nso_jsonrpc_requester
+   source/nso_jsonrpc_requester/modules
 
 
 

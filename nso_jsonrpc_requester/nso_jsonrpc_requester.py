@@ -79,12 +79,14 @@ class NsoJsonRpcCommon(object):
     def login(self, ack_warning=False):
         """
         Method to send a login request, if the user is able to log in, the users cookie is set
-        :param ack_warning: Boolean default False
-        :return:
-            Dictionary
 
-            set variable:
-                self.cookies with a Cookies object
+        :type ack_warning: Boolean
+        :param ack_warning: Default: False
+
+        :rtype: Dict
+        :return: A dictionary, also set's self.cookies with a Cookies object
+
+        :raises TypeError: if ack_warning is not boolean
 
         """
         if not isinstance(ack_warning, bool):
@@ -114,8 +116,9 @@ class NsoJsonRpcCommon(object):
     def logout(self):
         """
         Method to send a logout request
-        :return:
-            Dictionary
+
+        :rtype: Dict
+        :return: A dictionary of data
 
         """
         logout_json = {'jsonrpc': '2.0',
@@ -134,16 +137,25 @@ class NsoJsonRpcCommon(object):
     def new_trans(self, mode='read', conf_mode='private', tag=None, on_pending_changes='reuse'):
         """
         Method to request a new transaction
-        :param mode: {'read', 'read_write'} default is read
-        :param conf_mode: {'private', 'shared', 'exclusive'} default is private
-        :param tag: String default None
-        :param on_pending_changes: {'reuse', 'reject', 'discard'} default is reuse
-        :return:
-            Dictionary
 
-            set variables:
-                self.transaction_handle with a transaction handle
-                self.transaction_mode with either {'read', 'read_write'}
+        :type mode: String
+        :param mode: ('read', 'read_write') Default: read
+        :type conf_mode: String
+        :param conf_mode: ('private', 'shared', 'exclusive') Default: private
+        :type tag: String
+        :param tag: Default: None it is optional
+        :type on_pending_changes: String
+        :param on_pending_changes: ('reuse', 'reject', 'discard') Default: reuse
+
+        :rtype: Dict
+        :return: A dictionary, also set's self.transaction_handle with a transaction handle
+                 self.transaction_mode with either ('read', 'read_write')
+
+        :raises TypeError: if mode is not a string
+        :raises ValueError: if mode is not ('read', 'read_write')
+        :raises ValueError: if conf_mode not ('private', 'shared', 'exclusive')
+        :raises ValueError: if on_pending_changes not ('reuse', 'reject', 'discard')
+        :raises TypeError: if tag is supplied and is not a string
 
         """
         if not isinstance(mode, str):
@@ -197,8 +209,9 @@ class NsoJsonRpcCommon(object):
     def get_trans(self):
         """
         Method to get the all current transaction information
-        :return:
-            Dictionary
+
+        :rtype: Dict
+        :return: A dictionary of data
 
         """
         get_trans_json = {'jsonrpc': '2.0',
@@ -217,9 +230,14 @@ class NsoJsonRpcCommon(object):
     def get_system_setting(self, operation='version'):
         """
         Method to get get_system_setting information
-        :param operation: {'capabilities', 'customizations' ,'models', 'user', 'version', 'all'} default version
-        :return:
-            Dictionary
+
+        :type operation: String
+        :param operation: ('capabilities', 'customizations' ,'models', 'user', 'version', 'all') Default: version
+
+        :rtype: Dict
+        :return: A dictionary of data
+
+        :raises ValueError: if operation not ('capabilities', 'customizations' ,'models', 'user', 'version', 'all')
 
         """
         if operation not in {'capabilities', 'customizations', 'models', 'user', 'version', 'all'}:
@@ -244,9 +262,14 @@ class NsoJsonRpcCommon(object):
     def abort(self, request_id):
         """
         Method to send abort post
+
+        :type request_id: Integer
         :param request_id: Request ID to abort
-        :return:
-            Dictionary
+
+        :rtype: Dict
+        :return: A dictionary of data
+
+        :raises TypeError: if request_id is not an integer
 
         """
         if not isinstance(request_id, int):
@@ -270,9 +293,14 @@ class NsoJsonRpcCommon(object):
     def eval_xpath(self, xpath_expr):
         """
         Method to send eval_xpath post
+
+        :type xpath_expr: String
         :param xpath_expr: The xpath to evaluate
-        :return:
-            Dictionary
+
+        :rtype: Dict
+        :return: A dictionary of data
+
+        :raises TypeError: if xpath_expr is not an string
 
         """
         if not isinstance(xpath_expr, str):
@@ -297,9 +325,12 @@ class NsoJsonRpcCommon(object):
     def post_with_cookies(self, json_data):
         """
         Method to request a post with yummy cookies
-        :param json_data: Json Data
-        :return:
-            A requests response
+
+        :type json_data: Dict
+        :param json_data: Json Data in a dictionary
+
+        :rtype: requests response object
+        :return: A requests response
 
         """
         if self.protocol == 'http':
@@ -313,9 +344,12 @@ class NsoJsonRpcCommon(object):
     def print_pretty_json(json_data):
         """
         Method to print response JSON real pretty like
-        :param json_data: JSON Data
-        :return:
-            None
+
+        :type json_data: Dict
+        :param json_data: JSON Data in a dictionary
+
+        :rtype: None
+        :return: prints pretty JSON
 
         """
         print(json.dumps(json_data, sort_keys=True, indent=4))
@@ -325,9 +359,12 @@ class NsoJsonRpcCommon(object):
     def print_pretty_yaml(json_data):
         """
         Method to print response JSON as YAML
-        :param json_data: JSON Data
-        :return:
-            None
+
+        :type json_data: Dict
+        :param json_data: JSON Data in a dictionary
+
+        :rtype: None
+        :return: prints pretty YAML
 
         """
         print(yaml.dump(json_data, default_flow_style=False, indent=4))
@@ -337,9 +374,12 @@ class NsoJsonRpcCommon(object):
     def print_pretty_no_yaml_no_json(data):
         """
         Method to print Non-JSON, Non-YAML real pretty
+
+        :type data: String
         :param data: The Data
-        :return:
-            None
+
+        :rtype: None
+        :return: prints pretty text
 
         """
         for line in data.content.splitlines():
@@ -1039,11 +1079,20 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
     def get_values(self, path, leafs, check_default=False):
         """
         Method to send a get_values post retrieves multiple leafs at once
-        :param path: The NSO path to the data
+
+        :type path: String
+        :param path: The NSO XPATH to the data
+        :type leafs: List
         :param leafs: A list of leafs you want the data for, of type string
-        :param check_default: Boolean default False
-        :return:
-            Dictionary
+        :type check_default: Boolean
+        :param check_default: Default: False
+
+        :rtype: Dict
+        :return: A dictionary of data
+
+        :raises TypeError: if path is not a string
+        :raises TypeError: if leafs is not a list
+        :raises TypeError: if check_default is not boolean
 
         """
         if not isinstance(path, str):
@@ -1076,9 +1125,15 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
     def create(self, path):
         """
         Method to send a create post
-        :param path: The NSO path to the data
-        :return:
-            Dictionary
+
+        :type path: String
+        :param path: The NSO XPATH to the data
+
+        :rtype: Dict
+        :return: A dictionary of data
+
+        :raises TypeError: if path is not a string
+        :raises ValueError: if transaction_mode is not read_write
 
         """
         if self.transaction_mode != 'read_write':
@@ -1107,9 +1162,14 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
     def exists(self, path):
         """
         Method to send a exists post
-        :param path: The NSO path to the data
-        :return:
-            Dictionary
+
+        :type path: String
+        :param path: The NSO XPATH to the data
+
+        :rtype: Dict
+        :return: A dictionary of data
+
+        :raises TypeError: if path is not a string
 
         """
         if not isinstance(path, str):
@@ -1134,10 +1194,17 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
     def get_case(self, path, choice):
         """
         Method to send a get_case post
-        :param path: The NSO path to the data
-        :param choice: ?
-        :return:
-            Dictionary
+
+        :type path: String
+        :param path: The NSO XPATH to the data
+        :type choice: String
+        :param choice: A choice from a case
+
+        :rtype: Dict
+        :return: A dictionary of data
+
+        :raises TypeError: if path is not a string
+        :raises TypeError: if choice is not a string
 
         """
         if not isinstance(path, str):
@@ -1166,12 +1233,24 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
     def load(self, data, path='/', data_format='xml', mode='merge'):
         """
         Method to send a load post
+
+        :type data: String
         :param data: The data to be loaded in the transaction
-        :param path: default /
-        :param data_format: {'json', 'xml'} default xml
-        :param mode: {'create', 'merge', 'replace'} default is merge
-        :return:
-            Dictionary
+        :type path: String
+        :param path: The NSO XPATH to the data Default: /
+        :type data_format: String
+        :param data_format: ('json', 'xml') Default: xml
+        :type mode: String
+        :param mode: ('create', 'merge', 'replace') Default: merge
+
+        :rtype: Dict
+        :return: A dictionary of data
+
+        :raises TypeError: if data is not a string
+        :raises TypeError: if path is not a string
+        :raises KeyError: if data_format is not ('json', 'xml')
+        :raises KeyError: if mode is not ('create', 'merge', 'replace')
+        :raises ValueError: if transaction_mode is not read_write
 
         """
         if self.transaction_mode != 'read_write':
@@ -1212,11 +1291,20 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
     def set_value(self, path, value, dry_run=False):
         """
         Method to send a set_value post
-        :param path: The NSO path to the data
+
+        :type path: String
+        :param path: The NSO XPATH to the data
+        :type value: User specified
         :param value: The value to set the item to
-        :param dry_run: Boolean default False, when set True tests if value is valid or not
-        :return:
-            Dictionary
+        :type dry_run: Boolean
+        :param dry_run: Default: False, when set True tests if value is valid or not
+
+        :rtype: Dict
+        :return: A dictionary of data
+
+        :raises TypeError: if path is not a string
+        :raises TypeError: if dry_run is not boolean
+        :raises ValueError: if transaction_mode is not read_write
 
         """
         if self.transaction_mode != 'read_write':
@@ -1251,8 +1339,11 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         """
         Method to send a validate_commit post, in the CLI commits are validated automatically, in JsonRPC
         they are not, but only validated commits can be committed
-        :return:
-            Dictionary
+
+        :rtype: Dict
+        :return: A dictionary of data
+
+        :raises ValueError: if transaction_mode is not read_write
 
         """
         if self.transaction_mode != 'read_write':
@@ -1279,12 +1370,21 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         Method to send a commit post, in the CLI commits are validated automatically, in JsonRPC
         they are not, but only validated commits can be commited
 
-        :param dry_run: To output a dry run, default is True
-        :param output: 'cli', 'native', 'xml' default is cli
+        :type dry_run: Boolean
+        :param dry_run: To output a dry run, Default: is True
+        :type output: String
+        :param output: ('cli', 'native', 'xml') Default: cli
+        :type reverse: Boolean
         :param reverse: Output the revers of the config going in, default is False, only valid when
                         output equals native
-        :return:
-            Dictionary
+
+        :rtype: Dict
+        :return: A dictionary of data
+
+        :raises TypeError: if dry_run is not boolean
+        :raises KeyError: if output is not ('cli', 'native', 'xml')
+        :raises TypeError: if reverse is not boolean
+        :raises ValueError: if transaction_mode is not read_write
 
         """
         flags = list()
@@ -1325,9 +1425,15 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
     def delete(self, path):
         """
         Method to send a delete post
-        :param path: The NSO path to the data
-        :return:
-            Dictionary
+
+        :type path: String
+        :param path: The NSO XPATH to the data
+
+        :rtype: Dict
+        :return: A dictionary of data
+
+        :raises TypeError: if path is not a string
+        :raises ValueError: if transaction_mode is not read_write
 
         """
         if self.transaction_mode != 'read_write':
@@ -1356,8 +1462,9 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
     def get_service_points(self):
         """
         Method to send a get_service_points post
-        :return:
-            Dictionary
+
+        :rtype: Dict
+        :return: A dictionary of data
 
         """
         get_service_points_json = {'jsonrpc': '2.0',
@@ -1376,9 +1483,14 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
     def get_template_variables(self, name):
         """
         Method to send a get_template_variables post, this retrieves device templates only
+
+        :type name: String
         :param name: The name of the template
-        :return:
-            Dictionary
+
+        :rtype: Dict
+        :return: A dictionary of data
+
+        :raises TypeError: if name is not a string
 
         """
         if not isinstance(name, str):
