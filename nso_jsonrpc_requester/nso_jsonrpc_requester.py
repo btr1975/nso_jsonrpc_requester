@@ -425,8 +425,9 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
     def start_comet(self):
         """
         Method to start the comet process
-        :return:
-            None
+
+        :rtype: None
+        :return: None
 
         """
         self.__check_comet_state(False)
@@ -438,8 +439,9 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
     def stop_comet(self):
         """
         Method to stop the comet process
-        :return:
-            None
+
+        :rtype: None
+        :return: None
 
         """
         self.__check_comet_state(True)
@@ -451,8 +453,9 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
     def comet_poll(self):
         """
         Method to return comet result only
-        :return:
-            result
+
+        :rtype: String
+        :return: result
 
         """
         self.__check_comet_state(True)
@@ -466,12 +469,14 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
     def subscribe_changes(self, path):
         """
         Method to send a subscribe_changes post
-        :param path: NSO path to data to watch for changes
-        :return:
-            Dictionary
 
-            append variable:
-                self.comet_handles to the handle given by NSO
+        :type path: String
+        :param path: The NSO XPATH to the data to watch for changes
+
+        :rtype: Dict
+        :return: A dictionary of data, also appends variables to self.comet_handles to the handle given by NSO
+
+        :raises TypeError: if path is not a string
 
         """
         self.__check_comet_state(True)
@@ -500,13 +505,17 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
     def subscribe_poll_leaf(self, path, interval):
         """
         Method to send a subscribe_poll_leaf post
-        :param path: NSO path to data to watch for changes
-        :param interval: Interval
-        :return:
-            Dictionary
 
-            append variable:
-                self.comet_handles to the handle given by NSO
+        :type path: String
+        :param path: The NSO XPATH to the data to watch for changes
+        :type interval: Integer
+        :param interval: The interval of time for polling
+
+        :rtype: Dict
+        :return: A dictionary of data, also appends variables to self.comet_handles to the handle given by NSO
+
+        :raises TypeError: if path is not a string
+        :raises TypeError: if interval is not a integer
 
         """
         self.__check_comet_state(True)
@@ -539,12 +548,14 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
     def subscribe_cdboper(self, path):
         """
         Method to send a subscribe_cdboper post
-        :param path: NSO path to data to watch for changes
-        :return:
-            Dictionary
 
-            append variable:
-                self.comet_handles to the handle given by NSO
+        :type path: String
+        :param path: The NSO XPATH to the data to watch for changes
+
+        :rtype: Dict
+        :return: A dictionary of data, also appends variables to self.comet_handles to the handle given by NSO
+
+        :raises TypeError: if path is not a string
 
         """
         self.__check_comet_state(True)
@@ -573,11 +584,9 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
     def subscribe_upgrade(self):
         """
         Method to send a subscribe_upgrade post
-        :return:
-            Dictionary
 
-            append variable:
-                self.comet_handles to the handle given by NSO
+        :rtype: Dict
+        :return: A dictionary of data, also appends variables to self.comet_handles to the handle given by NSO
 
         """
         self.__check_comet_state(True)
@@ -602,11 +611,9 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
     def subscribe_jsonrpc_batch(self):
         """
         Method to send a subscribe_jsonrpc_batch post
-        :return:
-            Dictionary
 
-            append variable:
-                self.comet_handles to the handle given by NSO
+        :rtype: Dict
+        :return: A dictionary of data, also appends variables to self.comet_handles to the handle given by NSO
 
         """
         self.__check_comet_state(True)
@@ -632,8 +639,9 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
         """
         Method to send a get_subscriptions post
         This get's the sessions subscriptions
-        :return:
-            Dictionary
+
+        :rtype: Dict
+        :return: A dictionary of subscriptions
 
         """
         self.__check_comet_state(True)
@@ -658,8 +666,8 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
             start_cmd, subscribe_cdboper, subscribe_changes, subscribe_messages,
             subscribe_poll_leaf or subscribe_upgrade
 
-        :return:
-            Dictionary
+        :rtype: Dict
+        :return: A dictionary of data
 
         """
         comet_json = {'jsonrpc': '2.0',
@@ -680,9 +688,12 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
     def __start_subscription(self, handle):
         """
         Method to send a start_subscription post
-        :param handle: NSO path to data to watch for changes
-        :return:
-            Dictionary
+
+        :type handle: String
+        :param handle: Handle to start the subscription on
+
+        :rtype: Dict
+        :return: A dictionary of data
 
         """
         self.__check_comet_state(True)
@@ -705,8 +716,9 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
     def __unsubscribe(self):
         """
         Method to send a unsubscribe post
-        :return:
-            Dictionary
+
+        :rtype: Dict
+        :return: A dictionary of data
 
         """
         self.__check_comet_state(True)
@@ -730,9 +742,15 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
     def __check_comet_state(self, wanted_state):
         """
         Method to verify comet state
+
+        :type wanted_state: Boolean
         :param wanted_state: The state expected
-        :return:
-            None
+
+        :rtype: None
+        :return: None
+
+        :raises Exception: if wanted_state is False, but it is True
+        :raises Exception: if wanted_state is True, but it is False
 
         """
         if self.comet_started != wanted_state:
