@@ -11,6 +11,7 @@ Welcome to nso_jsonrpc_requester's documentation!
    :caption: Contents:
 
    source/nso_jsonrpc_requester/modules
+   source/examples/examples
 
 
 

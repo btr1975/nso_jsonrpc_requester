@@ -60,7 +60,7 @@ if html_theme == 'alabaster':
     html_theme_options = {
         'description': 'nso_jsonrpc_requester',
         'page_width': '95%',
-        'body_max_width': 'auto',
+        'body_max_width': '95%',
         'fixed_sidebar': 'true',
         'github_banner': 'true',
         'github_user': 'btr1975',
