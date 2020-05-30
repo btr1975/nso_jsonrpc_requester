@@ -471,7 +471,7 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
         Method to send a subscribe_changes post
 
         :type path: String
-        :param path: The NSO XPATH to the data to watch for changes
+        :param path: The NSO KEYPATH to the data to watch for changes
 
         :rtype: Dict
         :return: A dictionary of data, also appends variables to self.comet_handles to the handle given by NSO
@@ -507,7 +507,7 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
         Method to send a subscribe_poll_leaf post
 
         :type path: String
-        :param path: The NSO XPATH to the data to watch for changes
+        :param path: The NSO KEYPATH to the data to watch for changes
         :type interval: Integer
         :param interval: The interval of time for polling
 
@@ -550,7 +550,7 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
         Method to send a subscribe_cdboper post
 
         :type path: String
-        :param path: The NSO XPATH to the data to watch for changes
+        :param path: The NSO KEYPATH to the data to watch for changes
 
         :rtype: Dict
         :return: A dictionary of data, also appends variables to self.comet_handles to the handle given by NSO
@@ -797,7 +797,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         Method to send a show_config post
 
         :type path: String
-        :param path: The NSO XPATH to the data
+        :param path: The NSO KEYPATH to the data
         :type result_as: String
         :param result_as: ('string', 'json') Defualt: string
         :type with_oper: Boolean
@@ -850,7 +850,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         Method to send a deref post
 
         :type path: String
-        :param path: The NSO XPATH to the data
+        :param path: The NSO KEYPATH to the data
         :type result_as: String
         :param result_as: ('paths', 'target', 'list-target') Default: paths
 
@@ -889,7 +889,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         Method to send a get_leafref_values post
 
         :type path: String
-        :param path: The NSO XPATH to the data
+        :param path: The NSO KEYPATH to the data
         :type skip_grouping: Boolean
         :param skip_grouping: Default: False
         :type keys: List
@@ -946,7 +946,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         Method to send a run_action post
 
         :type path: String
-        :param path: The NSO XPATH to the data
+        :param path: The NSO KEYPATH to the data
         :type input_data: Dict
         :param input_data: A Dictionary of inputs
 
@@ -996,7 +996,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         Method to send a get_schema post
 
         :type path: String
-        :param path: The NSO XPATH to the data
+        :param path: The NSO KEYPATH to the data
 
         :rtype: Dict
         :return: A dictionary of data
@@ -1028,7 +1028,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         Method to send a get_list_keys post
 
         :type path: String
-        :param path: The NSO XPATH to the data
+        :param path: The NSO KEYPATH to the data
 
         :rtype: Dict
         :return: A dictionary of data
@@ -1060,7 +1060,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         Method to send a get_value post retrieves a single value
 
         :type path: String
-        :param path: The NSO XPATH to the data
+        :param path: The NSO KEYPATH to the data
         :type check_default: Boolean
         :param check_default: Default: False
 
@@ -1099,7 +1099,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         Method to send a get_values post retrieves multiple leafs at once
 
         :type path: String
-        :param path: The NSO XPATH to the data
+        :param path: The NSO KEYPATH to the data
         :type leafs: List
         :param leafs: A list of leafs you want the data for, of type string
         :type check_default: Boolean
@@ -1145,7 +1145,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         Method to send a create post
 
         :type path: String
-        :param path: The NSO XPATH to the data
+        :param path: The NSO KEYPATH to the data
 
         :rtype: Dict
         :return: A dictionary of data
@@ -1182,7 +1182,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         Method to send a exists post
 
         :type path: String
-        :param path: The NSO XPATH to the data
+        :param path: The NSO KEYPATH to the data
 
         :rtype: Dict
         :return: A dictionary of data
@@ -1214,7 +1214,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         Method to send a get_case post
 
         :type path: String
-        :param path: The NSO XPATH to the data
+        :param path: The NSO KEYPATH to the data
         :type choice: String
         :param choice: A choice from a case
 
@@ -1255,7 +1255,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         :type data: String
         :param data: The data to be loaded in the transaction
         :type path: String
-        :param path: The NSO XPATH to the data Default: /
+        :param path: The NSO KEYPATH to the data Default: /
         :type data_format: String
         :param data_format: ('json', 'xml') Default: xml
         :type mode: String
@@ -1311,7 +1311,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         Method to send a set_value post
 
         :type path: String
-        :param path: The NSO XPATH to the data
+        :param path: The NSO KEYPATH to the data
         :type value: User specified
         :param value: The value to set the item to
         :type dry_run: Boolean
@@ -1445,7 +1445,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         Method to send a delete post
 
         :type path: String
-        :param path: The NSO XPATH to the data
+        :param path: The NSO KEYPATH to the data
 
         :rtype: Dict
         :return: A dictionary of data
