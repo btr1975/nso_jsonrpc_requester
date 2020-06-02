@@ -6,3 +6,4 @@ nso_jsonrpc_requester examples
 
    comet-example
    config-example
+   config-query-example

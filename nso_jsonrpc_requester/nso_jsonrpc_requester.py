@@ -1530,6 +1530,272 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         else:
             response.raise_for_status()
 
+    def query(self, xpath_expr, result_as):
+        """
+        Method for a basic Query in NSO, This is a convenience method for calling
+        start_query, run_query and stop_query This method should not be used for paginated
+        results, as it results in performance degradation - use start_query, multiple
+        run_query and stop_query instead.
+
+        :type xpath_expr: String
+        :param xpath_expr: The XPATH expression to query
+        :type result_as: String
+        :param result_as: What the result should be returned as
+
+        :rtype: Dict
+        :return: A dictionary of data
+
+        :raises TypeError: if xpath_expr is not a string
+        :raises TypeError: if result_as is not a string
+
+        """
+        if not isinstance(xpath_expr, str):
+            raise TypeError('param xpath_expr must be of type string but received {}'.format(type(xpath_expr)))
+
+        if not isinstance(result_as, str):
+            raise TypeError('param result_as must be of type string but received {}'.format(type(result_as)))
+
+        query_json = {'jsonrpc': '2.0',
+                      'id': self.request_id,
+                      'method': 'query',
+                      'params': {
+                          'th': self.transaction_handle,
+                          'xpath_expr': xpath_expr,
+                          'result_as': result_as
+                      }}
+
+        response = self.post_with_cookies(query_json)
+
+        if response.ok:
+            return response.json()
+
+        else:
+            response.raise_for_status()
+
+    def start_query(self, xpath_expr=None, path=None, selection=None, chunk_size=None, initial_offset=None,
+                    sort=None, sort_order=None, include_total=True, context_node=None, result_as='string'):
+        """
+        Method to start a complex query
+
+        :type xpath_expr: String
+        :param xpath_expr: The XPATH expression to query is chosen above path if both are given
+        :type path: String
+        :param path: The KEYPATH expression to query
+        :type selection: List
+        :param selection: The fields to select, Optional
+        :type chunk_size: Integer
+        :param chunk_size: Must be greater than 0, Optional
+        :type initial_offset: Integer
+        :param initial_offset: Not sure on this yet, Optional
+        :type sort: List
+        :param sort: A list of XPATH expressions, Optional
+        :type sort_order: String
+        :param sort_order: One of the following {"ascending", "descending"}, Optional
+        :type include_total: Boolean
+        :param include_total: Include the total of records, Default: True
+        :type context_node: String
+        :param context_node: A KEYPATH, Optional
+        :type result_as: String
+        :param result_as: What the result should be returned as
+
+        :rtype: Dict
+        :return: A dictionary of data with one key 'qh' which is the Query Handle to be used with run_query etc.
+
+        :raises ValueError: if both xpath_expr, and path are not given
+        :raises TypeError: if xpath_expr is not a string
+        :raises TypeError: if path is not a string
+        :raises TypeError: if selection is not a list
+        :raises TypeError: if chunk_size is not a integer greater than 0
+        :raises TypeError: if initial_offset is not a integer
+        :raises TypeError: if sort is not a list
+        :raises ValueError: if sort_order, is not one of the following {"ascending", "descending"}
+        :raises TypeError: if include_total is not a boolean
+        :raises TypeError: if context_node is not a string
+        :raises TypeError: if result_as is not a string
+
+        """
+        query_json = {'jsonrpc': '2.0',
+                      'id': self.request_id,
+                      'method': 'start_query',
+                      'params': {
+                          'th': self.transaction_handle,
+                      }}
+
+        if not xpath_expr and not path:
+            raise ValueError('either xpath_expr needs to be given or path!')
+
+        else:
+            if xpath_expr:
+                if not isinstance(xpath_expr, str):
+                    raise TypeError('param xpath_expr must be of type string but received {}'.format(type(xpath_expr)))
+
+                else:
+                    query_json['params'].update({'xpath_expr': xpath_expr})
+
+            elif path:
+                if not isinstance(path, str):
+                    raise TypeError('param path must be of type string but received {}'.format(type(path)))
+
+                else:
+                    query_json['params'].update({'path': path})
+
+        if selection:
+            if not isinstance(selection, list):
+                raise TypeError('param selection must be of type list but received {}'.format(type(selection)))
+
+            else:
+                query_json['params'].update({'selection': selection})
+
+        if chunk_size:
+            if not isinstance(chunk_size, int) and chunk_size < 1:
+                raise TypeError('param chunk_size must be of int list but received {} '
+                                'or it is less than 1'.format(type(chunk_size)))
+
+            else:
+                query_json['params'].update({'chunk_size': chunk_size})
+
+        if initial_offset:
+            if not isinstance(initial_offset, int):
+                raise TypeError('param initial_offset must be of type int but '
+                                'received {}'.format(type(initial_offset)))
+
+            else:
+                query_json['params'].update({'initial_offset': initial_offset})
+
+        if sort:
+            if not isinstance(sort, list):
+                raise TypeError('param sort must be of type list but received {}'.format(type(sort)))
+
+            else:
+                query_json['params'].update({'sort': sort})
+
+        if sort_order:
+            if sort_order not in {"ascending", "descending"}:
+                raise ValueError('param sort_order must be one of the following {"ascending", "descending"}')
+
+            else:
+                query_json['params'].update({'sort_order': sort_order})
+
+        if not isinstance(include_total, bool):
+            raise TypeError('param include_total must be of type bool but received {}'.format(type(include_total)))
+
+        else:
+            query_json['params'].update({'include_total': include_total})
+
+        if context_node:
+            if not isinstance(context_node, str):
+                raise TypeError('param context_node must be of type string but received {}'.format(type(context_node)))
+
+            else:
+                query_json['params'].update({'context_node': context_node})
+
+        if not isinstance(result_as, str):
+            raise TypeError('param result_as must be of type string but received {}'.format(type(result_as)))
+
+        else:
+            query_json['params'].update({'result_as': result_as})
+
+        response = self.post_with_cookies(query_json)
+
+        if response.ok:
+            return response.json()
+
+        else:
+            response.raise_for_status()
+
+    def run_query(self, qh):
+        """
+        Method to run the query
+
+        :type qh: Integer
+        :param qh: The query handle to run
+
+        :rtype: Dict
+        :return: A dictionary of data
+
+        :raises TypeError: if qh is not a integer
+
+        """
+        if not isinstance(qh, int):
+            raise TypeError('param qh must be of type int but received {}'.format(type(qh)))
+
+        query_json = {'jsonrpc': '2.0',
+                      'id': self.request_id,
+                      'method': 'run_query',
+                      'params': {
+                          'qh': qh,
+                      }}
+
+        response = self.post_with_cookies(query_json)
+
+        if response.ok:
+            return response.json()
+
+        else:
+            response.raise_for_status()
+
+    def reset_query(self, qh):
+        """
+        Method to reset the query
+
+        :type qh: Integer
+        :param qh: The query handle to run
+
+        :rtype: Dict
+        :return: A dictionary of data
+
+        :raises TypeError: if qh is not a integer
+
+        """
+        if not isinstance(qh, int):
+            raise TypeError('param qh must be of type int but received {}'.format(type(qh)))
+
+        query_json = {'jsonrpc': '2.0',
+                      'id': self.request_id,
+                      'method': 'reset_query',
+                      'params': {
+                          'qh': qh,
+                      }}
+
+        response = self.post_with_cookies(query_json)
+
+        if response.ok:
+            return response.json()
+
+        else:
+            response.raise_for_status()
+
+    def stop_query(self, qh):
+        """
+        Method to stop the query
+
+        :type qh: Integer
+        :param qh: The query handle to run
+
+        :rtype: Dict
+        :return: A dictionary of data
+
+        :raises TypeError: if qh is not a integer
+
+        """
+        if not isinstance(qh, int):
+            raise TypeError('param qh must be of type int but received {}'.format(type(qh)))
+
+        query_json = {'jsonrpc': '2.0',
+                      'id': self.request_id,
+                      'method': 'stop_query',
+                      'params': {
+                          'qh': qh,
+                      }}
+
+        response = self.post_with_cookies(query_json)
+
+        if response.ok:
+            return response.json()
+
+        else:
+            response.raise_for_status()
+
 
 if __name__ == '__main__':
     help(NsoJsonRpcComet)

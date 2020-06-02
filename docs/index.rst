@@ -12,6 +12,7 @@ Welcome to nso_jsonrpc_requester's documentation!
 
    source/nso_jsonrpc_requester/modules
    source/examples/examples
+   source/release-notes/release-notes
 
 
 
