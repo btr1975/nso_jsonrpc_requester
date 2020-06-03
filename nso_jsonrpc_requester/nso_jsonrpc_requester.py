@@ -10,7 +10,7 @@ __copyright__ = "Copyright (c) 2020, Benjamin P. Trachtenberg"
 __credits__ = None
 __license__ = 'The MIT License (MIT)'
 __status__ = 'prod'
-__version_info__ = (1, 0, 0)
+__version_info__ = (1, 0, 2)
 __version__ = '.'.join(map(str, __version_info__))
 __maintainer__ = 'Benjamin P. Trachtenberg'
 __email__ = 'e_ben_75-python@yahoo.com'
@@ -1530,7 +1530,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         else:
             response.raise_for_status()
 
-    def query(self, xpath_expr, result_as):
+    def query(self, xpath_expr, result_as='string'):
         """
         Method for a basic Query in NSO, This is a convenience method for calling
         start_query, run_query and stop_query This method should not be used for paginated
@@ -1540,20 +1540,21 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         :type xpath_expr: String
         :param xpath_expr: The XPATH expression to query
         :type result_as: String
-        :param result_as: What the result should be returned as
+        :param result_as: One of these options {'string', 'keypath-value', 'leaf_value_as_string'},  Default string
 
         :rtype: Dict
         :return: A dictionary of data
 
         :raises TypeError: if xpath_expr is not a string
-        :raises TypeError: if result_as is not a string
+        :raises ValueError: if result_as is not one of the following {'string', 'keypath-value', 'leaf_value_as_string'}
 
         """
         if not isinstance(xpath_expr, str):
             raise TypeError('param xpath_expr must be of type string but received {}'.format(type(xpath_expr)))
 
-        if not isinstance(result_as, str):
-            raise TypeError('param result_as must be of type string but received {}'.format(type(result_as)))
+        if result_as not in {'string', 'keypath-value', 'leaf_value_as_string'}:
+            raise ValueError("param result_as must be one of the following {'string', 'keypath-value', "
+                             "'leaf_value_as_string'} of type string but received")
 
         query_json = {'jsonrpc': '2.0',
                       'id': self.request_id,
@@ -1596,7 +1597,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         :type context_node: String
         :param context_node: A KEYPATH, Optional
         :type result_as: String
-        :param result_as: What the result should be returned as
+        :param result_as: One of these options {'string', 'keypath-value', 'leaf_value_as_string'},  Default string
 
         :rtype: Dict
         :return: A dictionary of data with one key 'qh' which is the Query Handle to be used with run_query etc.
@@ -1611,7 +1612,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         :raises ValueError: if sort_order, is not one of the following {"ascending", "descending"}
         :raises TypeError: if include_total is not a boolean
         :raises TypeError: if context_node is not a string
-        :raises TypeError: if result_as is not a string
+        :raises ValueError: if result_as is not one of the following {'string', 'keypath-value', 'leaf_value_as_string'}
 
         """
         query_json = {'jsonrpc': '2.0',
@@ -1689,8 +1690,9 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
             else:
                 query_json['params'].update({'context_node': context_node})
 
-        if not isinstance(result_as, str):
-            raise TypeError('param result_as must be of type string but received {}'.format(type(result_as)))
+        if result_as not in {'string', 'keypath-value', 'leaf_value_as_string'}:
+            raise ValueError("param result_as must be one of the following {'string', 'keypath-value', "
+                             "'leaf_value_as_string'} of type string but received")
 
         else:
             query_json['params'].update({'result_as': result_as})
