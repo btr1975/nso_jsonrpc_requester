@@ -1287,9 +1287,9 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         if mode not in {'create', 'merge', 'replace'}:
             raise KeyError('param mode must be one of these {"create", "merge", "replace"}')
 
-        get_case_json = {'jsonrpc': '2.0',
+        load_json = {'jsonrpc': '2.0',
                          'id': self.request_id,
-                         'method': 'get_case',
+                         'method': 'load',
                          'params': {
                              'th': self.transaction_handle,
                              'data': data,
@@ -1298,7 +1298,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
                              'mode': mode
                          }}
 
-        response = self.post_with_cookies(get_case_json)
+        response = self.post_with_cookies(load_json)
 
         if response.ok:
             return response.json()

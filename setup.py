@@ -20,7 +20,7 @@ tests_require = [
 
 setup(
     name='nso_jsonrpc_requester',
-    version='1.0.2',
+    version='1.0.3',
     python_requires='>=3.3',
     description='This is a library used to manipulate data in Cisco NSO',
     long_description=long_description,
