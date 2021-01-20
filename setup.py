@@ -6,7 +6,7 @@ with open(os.path.join(base_dir, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 about = {}
-with open(os.path.join(base_dir, 'nso_jsonrpc_requester', 'version.py'), 'r', 'utf-8') as f:
+with open(os.path.join(base_dir, 'nso_jsonrpc_requester', 'version.py'), 'r', encoding='utf-8') as f:
     exec(f.read(), about)
 
 packages = [
