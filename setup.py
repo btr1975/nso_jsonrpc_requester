@@ -6,6 +6,10 @@ base_dir = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(base_dir, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
+about = {}
+with open(os.path.join(base_dir, 'nso_jsonrpc_requester', 'version.py'), 'r', 'utf-8') as f:
+    exec(f.read(), about)
+
 packages = [
     'nso_jsonrpc_requester'
 ]
@@ -20,10 +24,10 @@ tests_require = [
 ]
 
 setup(
-    name='nso_jsonrpc_requester',
-    version=version.__version__,
+    name=about['__title__'],
+    version=about['__version__'],
     python_requires='>=3.3',
-    description='This is a library used to manipulate data in Cisco NSO',
+    description=about['__description__'],
     long_description=long_description,
     long_description_content_type='text/restructuredtext',
     keywords='cisco nso json rpc network engineer',
@@ -33,9 +37,9 @@ setup(
         'Source': 'https://github.com/btr1975/nso_jsonrpc_requester',
         'Tracker': 'https://github.com/btr1975/nso_jsonrpc_requester/issues',
     },
-    author=version.__maintainer__,
-    author_email=version.__email__,
-    license=version.__license__,
+    author=about['__maintainer__'],
+    author_email=about['__email__'],
+    license=about['__license__'],
     packages=packages,
     include_package_data=True,
     install_requires=install_requires,

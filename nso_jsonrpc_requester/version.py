@@ -2,6 +2,8 @@
 Holds the version information for the package
 
 """
+__title__ = 'nso_jsonrpc_requester'
+__description__ = 'This is a library used to manipulate data in Cisco NSO'
 __author__ = 'Benjamin P. Trachtenberg'
 __copyright__ = "Copyright (c) 2020 - 2021, Benjamin P. Trachtenberg"
 __credits__ = None
