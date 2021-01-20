@@ -1,5 +1,6 @@
 from setuptools import setup
 import os
+from nso_jsonrpc_requester import version
 
 base_dir = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(base_dir, 'README.rst'), encoding='utf-8') as f:
@@ -20,7 +21,7 @@ tests_require = [
 
 setup(
     name='nso_jsonrpc_requester',
-    version='1.0.3',
+    version=version.__version__,
     python_requires='>=3.3',
     description='This is a library used to manipulate data in Cisco NSO',
     long_description=long_description,
@@ -32,9 +33,9 @@ setup(
         'Source': 'https://github.com/btr1975/nso_jsonrpc_requester',
         'Tracker': 'https://github.com/btr1975/nso_jsonrpc_requester/issues',
     },
-    author='Benjamin P. Trachtenberg',
-    author_email='e_ben_75-python@yahoo.com',
-    license='MIT',
+    author=version.__maintainer__,
+    author_email=version.__email__,
+    license=version.__license__,
     packages=packages,
     include_package_data=True,
     install_requires=install_requires,
