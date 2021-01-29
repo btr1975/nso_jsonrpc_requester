@@ -2,7 +2,7 @@ from setuptools import setup
 import os
 
 base_dir = os.path.abspath(os.path.dirname(__file__))
-with open(os.path.join(base_dir, 'README.rst'), encoding='utf-8') as f:
+with open(os.path.join(base_dir, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 about = {}
@@ -28,7 +28,7 @@ setup(
     python_requires='>=3.3',
     description=about['__description__'],
     long_description=long_description,
-    long_description_content_type='text/restructuredtext',
+    long_description_content_type='text/markdown',
     keywords='cisco nso json rpc network engineer',
     # url='https://nso_jsonrpc_requester.readthedocs.io',
     project_urls={
