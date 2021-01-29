@@ -149,3 +149,6 @@ dmypy.json
 +
 +# Ignore Vi swap files
 +*.swp
+
+# Ignore temp.py
+temp.py
