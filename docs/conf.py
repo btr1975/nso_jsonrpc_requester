@@ -14,6 +14,9 @@ import os
 import sys
 base_path = os.path.split(os.path.join(os.path.abspath(os.path.dirname(__name__))))[0]
 sys.path.append(base_path)
+about = {}
+with open(os.path.join(base_path, 'nso_jsonrpc_requester', 'version.py'), 'r', encoding='utf-8') as f:
+    exec(f.read(), about)
 
 
 # -- Added for readthedocs.org -----------------------------------------------
@@ -23,13 +26,12 @@ master_doc = 'index'
 
 # -- Project information -----------------------------------------------------
 
-project = 'nso_jsonrpc_requester'
-copyright = '2020, Ben Trachtenberg'
-author = 'Ben Trachtenberg'
-
 # The full version, including alpha/beta/rc tags
-release = '1.0.2'
+release = about['__version__']
 
+project = f'{about["__title__"]} v{release}'
+copyright = about['__copyright__']
+author = about['__author__']
 
 # -- General configuration ---------------------------------------------------
 
@@ -58,13 +60,13 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 html_theme = 'alabaster'
 if html_theme == 'alabaster':
     html_theme_options = {
-        'description': 'nso_jsonrpc_requester',
+        'description': about["__title__"],
         'page_width': '95%',
         'body_max_width': '95%',
         'fixed_sidebar': 'true',
         'github_banner': 'true',
         'github_user': 'btr1975',
-        'github_repo': 'nso_jsonrpc_requester'
+        'github_repo': about["__title__"]
     }
 
 # Add any paths that contain custom static files (such as style sheets) here,
