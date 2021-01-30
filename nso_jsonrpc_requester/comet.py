@@ -35,7 +35,7 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
         self.comet_started = False
         self.start_comet()
 
-    def __str__(self):
+    def __str__(self):  # pragma: no cover
         return '<NsoJsonRpcComet>'
 
     def start_comet(self):
