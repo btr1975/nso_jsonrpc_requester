@@ -115,7 +115,7 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
             if self.__start_subscription(response.json()['result']['handle']).ok:
                 return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def subscribe_poll_leaf(self, path, interval):
@@ -158,7 +158,7 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
             if self.__start_subscription(response.json()['result']['handle']).ok:
                 return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def subscribe_cdboper(self, path):
@@ -194,7 +194,7 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
             if self.__start_subscription(response.json()['result']['handle']).ok:
                 return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def subscribe_upgrade(self):
@@ -221,7 +221,7 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
             if self.__start_subscription(response.json()['result']['handle']).ok:
                 return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def subscribe_jsonrpc_batch(self):
@@ -248,7 +248,7 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
             if self.__start_subscription(response.json()['result']['handle']).ok:
                 return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def get_subscriptions(self):
@@ -272,7 +272,7 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def __comet(self):
@@ -298,7 +298,7 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def __start_subscription(self, handle):
@@ -326,7 +326,7 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
         if response.ok:
             return response
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def __unsubscribe(self):
@@ -352,7 +352,7 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
             if response.ok:
                 pass
 
-            else:
+            else:  # pragma: no cover
                 response.raise_for_status()
 
     def __check_comet_state(self, wanted_state):
@@ -377,5 +377,5 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
                 raise Exception('Comet is not running!!')
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     help(NsoJsonRpcComet)

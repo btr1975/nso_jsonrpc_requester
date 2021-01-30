@@ -105,7 +105,7 @@ class NsoJsonRpcCommon:
             self.cookies = response.cookies
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def logout(self):
@@ -126,7 +126,7 @@ class NsoJsonRpcCommon:
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def new_trans(self, mode='read', conf_mode='private', tag=None, on_pending_changes='reuse'):
@@ -198,7 +198,7 @@ class NsoJsonRpcCommon:
             self.transaction_mode = mode
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def get_trans(self):
@@ -219,7 +219,7 @@ class NsoJsonRpcCommon:
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def get_system_setting(self, operation='version'):
@@ -251,7 +251,7 @@ class NsoJsonRpcCommon:
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def abort(self, request_id):
@@ -282,7 +282,7 @@ class NsoJsonRpcCommon:
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def eval_xpath(self, xpath_expr):
@@ -314,7 +314,7 @@ class NsoJsonRpcCommon:
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def post_with_cookies(self, json_data):
@@ -336,7 +336,7 @@ class NsoJsonRpcCommon:
                                  verify=self.ssl_verify)
 
     @staticmethod
-    def print_pretty_json(json_data):
+    def print_pretty_json(json_data):  # pragma: no cover
         """
         Method to print response JSON real pretty like
 
@@ -351,7 +351,7 @@ class NsoJsonRpcCommon:
         LOGGER.debug(json.dumps(json_data, sort_keys=True, indent=4))
 
     @staticmethod
-    def print_pretty_yaml(json_data):
+    def print_pretty_yaml(json_data):  # pragma: no cover
         """
         Method to print response JSON as YAML
 
@@ -366,7 +366,7 @@ class NsoJsonRpcCommon:
         LOGGER.debug(yaml.dump(json_data, default_flow_style=False, indent=4))
 
     @staticmethod
-    def print_pretty_no_yaml_no_json(data):
+    def print_pretty_no_yaml_no_json(data):  # pragma: no cover
         """
         Method to print Non-JSON, Non-YAML real pretty
 

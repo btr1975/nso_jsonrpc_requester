@@ -152,3 +152,7 @@ dmypy.json
 
 # Ignore temp.py
 temp.py
+reports/
+
+# No JetBrains
+.idea/

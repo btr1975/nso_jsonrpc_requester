@@ -86,7 +86,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def deref(self, path, result_as='paths'):
@@ -125,7 +125,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def get_leafref_values(self, path, skip_grouping=False, keys=None):
@@ -182,7 +182,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def run_action(self, path, input_data=None):
@@ -232,7 +232,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def get_schema(self, path):
@@ -264,7 +264,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def get_list_keys(self, path):
@@ -296,7 +296,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def get_value(self, path, check_default=False):
@@ -335,7 +335,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def get_values(self, path, leafs, check_default=False):
@@ -381,7 +381,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def create(self, path):
@@ -418,7 +418,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def exists(self, path):
@@ -450,7 +450,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def get_case(self, path, choice):
@@ -489,7 +489,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def load(self, data, path='/', data_format='xml', mode='merge'):
@@ -547,7 +547,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def set_value(self, path, value, dry_run=False):
@@ -594,7 +594,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def validate_commit(self):
@@ -624,7 +624,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def commit(self, dry_run=True, output='cli', reverse=False):
@@ -681,7 +681,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def delete(self, path):
@@ -718,7 +718,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def get_service_points(self):
@@ -739,7 +739,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def get_template_variables(self, name):
@@ -771,7 +771,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def query(self, xpath_expr, result_as='string'):
@@ -814,7 +814,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def start_query(self, xpath_expr=None, path=None, selection=None, chunk_size=None, initial_offset=None,
@@ -946,7 +946,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def run_query(self, qh):
@@ -977,7 +977,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def reset_query(self, qh):
@@ -1008,7 +1008,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
     def stop_query(self, qh):
@@ -1039,9 +1039,9 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         if response.ok:
             return response.json()
 
-        else:
+        else:  # pragma: no cover
             response.raise_for_status()
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     help(NsoJsonRpcConfig)

@@ -5,7 +5,7 @@ import json
 
 @pytest.fixture
 def trans_data():
-    return {'jsonrpc': '2.0', 'result': {'trans': [{'th': 1, 'db': 'running', 'mode': 'read', 'tag': ''}]}, 'id': 70812}
+    return {'jsonrpc': '2.0', 'result': {'th': 1}, 'id': 21052}
 
 
 @pytest.fixture
@@ -27,6 +27,11 @@ def requests_mock_fixture():
 @pytest.fixture
 def request_data_login_get_trans(requests_mock_fixture, trans_data):
     return requests_mock_fixture.post('http://example.com:8080/jsonrpc', json=trans_data)
+
+
+@pytest.fixture
+def request_data_login_get_trans_https(requests_mock_fixture, trans_data):
+    return requests_mock_fixture.post('https://example.com:8080/jsonrpc', json=trans_data)
 
 
 @pytest.fixture
