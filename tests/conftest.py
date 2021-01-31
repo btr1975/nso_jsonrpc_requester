@@ -9,6 +9,11 @@ def trans_data():
 
 
 @pytest.fixture
+def comet_data():
+    return {'jsonrpc': '2.0', 'result': {'th': 1, 'handle': 42}, 'id': 21052}
+
+
+@pytest.fixture
 def system_data():
     return {'jsonrpc': '2.0', 'result': '4.7.3.1', 'id': 45890}
 
@@ -27,6 +32,11 @@ def requests_mock_fixture():
 @pytest.fixture
 def request_data_login_get_trans(requests_mock_fixture, trans_data):
     return requests_mock_fixture.post('http://example.com:8080/jsonrpc', json=trans_data)
+
+
+@pytest.fixture
+def request_data_login_get_comet(requests_mock_fixture, comet_data):
+    return requests_mock_fixture.post('http://example.com:8080/jsonrpc', json=comet_data)
 
 
 @pytest.fixture

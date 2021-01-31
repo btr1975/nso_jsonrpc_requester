@@ -79,7 +79,7 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
         try:
             return self.__comet()['result']
 
-        except Exception as e:
+        except Exception as e:  # pragma: no cover
             self.stop_comet()
 
     def subscribe_changes(self, path):
