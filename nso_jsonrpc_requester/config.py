@@ -33,7 +33,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
                  ssl_verify=True):
         super().__init__(protocol, ip, port, username, password, ssl_verify)
 
-    def __str__(self):
+    def __str__(self):  # pragma: no cover
         return '<NsoJsonRpc>'
 
     def show_config(self, path, result_as='string', with_oper=False, max_size=0):
