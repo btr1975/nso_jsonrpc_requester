@@ -179,6 +179,26 @@ def test_config_init_bad_data(request_data_login_get_trans):
     with pytest.raises(TypeError):
         test_obj.stop_query(qh='test')
 
+    test_obj.new_trans()
+
+    with pytest.raises(ValueError):
+        test_obj.create(path='/services/path')
+
+    with pytest.raises(ValueError):
+        test_obj.load(data='test')
+
+    with pytest.raises(ValueError):
+        test_obj.set_value(path='/services/path', value='test')
+
+    with pytest.raises(ValueError):
+        test_obj.validate_commit()
+
+    with pytest.raises(ValueError):
+        test_obj.commit()
+
+    with pytest.raises(ValueError):
+        test_obj.delete(path='/services/path')
+
 
 def test_config_init(request_data_login_get_trans):
     test_obj = NsoJsonRpcConfig('http', 'example.com', '8080', 'admin', 'admin', ssl_verify=False)
