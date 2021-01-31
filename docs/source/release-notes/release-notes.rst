@@ -10,3 +10,8 @@ Version 1.0.2
 ~~~~~~~~~~~~~
 
 * For result_as in query, and start_query, forced options {'string', 'keypath-value', 'leaf_value_as_string'}
+
+Version 1.0.3
+~~~~~~~~~~~~~
+
+* Added packaging.
