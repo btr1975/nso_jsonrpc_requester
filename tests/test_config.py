@@ -162,7 +162,7 @@ def test_config_init_bad_data(request_data_login_get_trans):
 
     with pytest.raises(TypeError):
         test_obj.start_query(xpath_expr='/services/path', path=None, selection=None, chunk_size=None,
-                             initial_offset=None, sort=None, sort_order=None, include_total=None,
+                             initial_offset=None, sort=None, sort_order=None, include_total=True,
                              context_node=1, result_as='string')
 
     with pytest.raises(ValueError):
@@ -182,3 +182,33 @@ def test_config_init_bad_data(request_data_login_get_trans):
 
 def test_config_init(request_data_login_get_trans):
     test_obj = NsoJsonRpcConfig('http', 'example.com', '8080', 'admin', 'admin', ssl_verify=False)
+    test_obj.new_trans(mode='read_write')
+    test_obj.show_config(path='/services/path')
+    test_obj.deref(path='/services/path')
+    test_obj.get_leafref_values(path='/services/path')
+    test_obj.get_leafref_values(path='/services/path', keys=['test'])
+    test_obj.run_action(path='/services/path', input_data=None)
+    test_obj.run_action(path='/services/path', input_data={'test': 'test'})
+    test_obj.get_schema(path='/services/path')
+    test_obj.get_list_keys(path='/services/path')
+    test_obj.get_value(path='/services/path')
+    test_obj.get_values(path='/services/path', leafs=['test'])
+    test_obj.create(path='/services/path')
+    test_obj.exists(path='/services/path')
+    test_obj.get_case(path='/services/path', choice='test')
+    test_obj.load(data='test')
+    test_obj.set_value(path='/services/path', value='test')
+    test_obj.validate_commit()
+    test_obj.commit()
+    test_obj.commit(output='native', reverse=True)
+    test_obj.delete(path='/services/path')
+    test_obj.get_service_points()
+    test_obj.get_template_variables(name='test')
+    test_obj.query(xpath_expr='/services/path')
+    test_obj.start_query(xpath_expr='/services/path', selection=['test'], chunk_size=10, initial_offset=10,
+                         sort=['test'], sort_order='descending', include_total=False,
+                         context_node='/thing', result_as='string')
+    test_obj.start_query(path='/services/path')
+    test_obj.run_query(qh=5)
+    test_obj.reset_query(qh=5)
+    test_obj.stop_query(qh=5)
