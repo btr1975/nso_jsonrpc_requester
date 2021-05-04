@@ -1,3 +1,5 @@
+[![Unit-Testing, Coverage, Linting](https://github.com/btr1975/nso_jsonrpc_requester/actions/workflows/test-coverage-lint.yml/badge.svg)](https://github.com/btr1975/nso_jsonrpc_requester/actions/workflows/test-coverage-lint.yml)
+
 # nso_jsonrpc_requester
 
 * This is a library to interact with the JSON-RPC of a Cisco Network
