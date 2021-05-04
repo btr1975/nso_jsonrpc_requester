@@ -30,7 +30,7 @@ go get github.com/btr1975/nsojsonrpcrequestergo
 go get github.com/btr1975/nsojsonrpcrequestergo@v1.0.0
 ```
 
-### Python Install
+### Python Install Source
 
 * In your requirements.txt for newest code
 
@@ -42,5 +42,11 @@ git+https://github.com/btr1975/nso_jsonrpc_requester.git@master#egg=nso_jsonrpc_
 
 ```text
 git+https://github.com/btr1975/nso_jsonrpc_requester.git@1.0.3#egg=nso_jsonrpc_requester
+```
+
+### Python Install pip
+
+```text
+pip install nso-jsonrpc-requester
 ```
 
