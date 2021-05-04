@@ -30,9 +30,9 @@ setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     keywords='cisco nso json rpc network engineer',
-    # url='https://nso_jsonrpc_requester.readthedocs.io',
+    url='https://nso-jsonrpc-requester.readthedocs.io',
     project_urls={
-        # 'Documentation': 'https://nso_jsonrpc_requester.readthedocs.io/en/latest/',
+        'Documentation': 'https://nso-jsonrpc-requester.readthedocs.io/en/latest/',
         'Source': 'https://github.com/btr1975/nso_jsonrpc_requester',
         'Tracker': 'https://github.com/btr1975/nso_jsonrpc_requester/issues',
     },
