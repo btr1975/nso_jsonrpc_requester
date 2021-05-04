@@ -34,4 +34,4 @@ jobs:
         coverage report
     - name: Lint with pylint
       run: |
-        pylint /nso_jsonrpc_requester/*
+        pylint ./nso_jsonrpc_requester/*
