@@ -61,7 +61,7 @@ include = [
 zip-safe = false
 
 [tool.setuptools.dynamic]
-version = {attr = "zapish_logger.version.__version__"}
+version = {attr = "nso_jsonrpc_requester.version.__version__"}
 readme = {file = "README.md", content-type = "text/markdown"}
 dependencies = {file = "requirements.txt"}
 
