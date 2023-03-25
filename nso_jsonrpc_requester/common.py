@@ -1,6 +1,5 @@
 """
 Holds the common needs for the NSO-JSON RPC
-
 """
 import json
 import logging
@@ -31,14 +30,14 @@ class NsoJsonRpcCommon:
     :param ssl_verify: Choice to verify SSL Cer Default: True
 
     :rtype: None
-    :returns: None
+    :returns: NA init
 
     :rasies TypeError: If protocol is not ('http', 'https')
 
     """
 
-    def __init__(self, protocol='http', ip='127.0.0.1', port='8080', username='admin', password='admin',
-                 ssl_verify=True):
+    def __init__(self, protocol: str = 'http', ip: str = '127.0.0.1', port: str = '8080',
+                 username: str = 'admin', password: str = 'admin', ssl_verify: bool = True) -> None:
         self.username = username
         self.password = password
         self.ssl_verify = ssl_verify
@@ -53,7 +52,7 @@ class NsoJsonRpcCommon:
         self.request_id = random.randint(1, 100000)
         # self.comet_id is a unique id (decided by the client) which must be given first in a call to the comet
         # method, and then to upcoming calls which trigger comet notifications.
-        self.comet_id = 'remote-comet-{}'.format(random.randint(1, 100000))
+        self.comet_id = f'remote-comet-{random.randint(1, 100000)}'
         self.comet_handles = list()
         # self.transaction_handle starts as set to None, but is set when the new_trans method is called, it is
         # assigned by NSO
@@ -69,7 +68,7 @@ class NsoJsonRpcCommon:
         if protocol not in ('http', 'https'):
             raise TypeError('Protocol should be http, or https!')
 
-        self.server_url = '{protocol}://{ip}:{port}/jsonrpc'.format(protocol=protocol, ip=ip, port=port)
+        self.server_url = f'{protocol}://{ip}:{port}/jsonrpc'
 
     def login(self, ack_warning=False):
         """
@@ -85,7 +84,7 @@ class NsoJsonRpcCommon:
 
         """
         if not isinstance(ack_warning, bool):
-            raise TypeError('param ack_warning must be of type boolean but received {}'.format(type(ack_warning)))
+            raise TypeError(f'param ack_warning must be of type boolean but received {type(ack_warning)}')
 
         login_json = {'jsonrpc': '2.0',
                       'id': self.request_id,
@@ -154,7 +153,7 @@ class NsoJsonRpcCommon:
 
         """
         if not isinstance(mode, str):
-            raise TypeError('param mode must be of type string but received {}'.format(type(mode)))
+            raise TypeError(f'param mode must be of type string but received {type(mode)}')
 
         if mode not in {'read', 'read_write'}:
             raise ValueError('param mode valid options are {"read", "read_write"}')
@@ -167,7 +166,7 @@ class NsoJsonRpcCommon:
 
         if tag:
             if not isinstance(tag, str):
-                raise TypeError('param tag must be of type string but received {}'.format(type(tag)))
+                raise TypeError(f'param tag must be of type string but received {type(tag)}')
 
             new_trans_json = {'jsonrpc': '2.0',
                               'id': self.request_id,
@@ -268,7 +267,7 @@ class NsoJsonRpcCommon:
 
         """
         if not isinstance(request_id, int):
-            raise TypeError('param request_id must be of type integer but received {}'.format(type(request_id)))
+            raise TypeError(f'param request_id must be of type integer but received {type(request_id)}')
 
         abort_json = {'jsonrpc': '2.0',
                       'id': self.request_id,
@@ -299,7 +298,7 @@ class NsoJsonRpcCommon:
 
         """
         if not isinstance(xpath_expr, str):
-            raise TypeError('param xpath_expr must be of type string but received {}'.format(type(xpath_expr)))
+            raise TypeError(f'param xpath_expr must be of type string but received {type(xpath_expr)}')
 
         eval_xpath_json = {'jsonrpc': '2.0',
                            'id': self.request_id,

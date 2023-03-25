@@ -1,8 +1,7 @@
 """
 Holds the config methods for the NSO-JSON RPC
-
 """
-from .common import NsoJsonRpcCommon
+from nso_jsonrpc_requester.common import NsoJsonRpcCommon
 
 
 class NsoJsonRpcConfig(NsoJsonRpcCommon):
@@ -23,14 +22,14 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
     :param ssl_verify: Choice to verify SSL Cer Default: True
 
     :rtype: None
-    :returns: None
+    :returns: NA init
 
     :rasies TypeError: If protocol is not ('http', 'https')
 
     """
 
-    def __init__(self, protocol='http', ip='127.0.0.1', port='8080', username='admin', password='admin',
-                 ssl_verify=True):
+    def __init__(self, protocol: str = 'http', ip: str = '127.0.0.1', port: str = '8080',
+                 username: str = 'admin', password: str = 'admin', ssl_verify: bool = True) -> None:
         super().__init__(protocol, ip, port, username, password, ssl_verify)
 
     def __str__(self):  # pragma: no cover
