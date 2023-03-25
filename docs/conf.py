@@ -18,7 +18,7 @@ sys.path.append(base_path)
 
 # Reads version.py and converts to a dict of keys
 version_py = {}
-with open(os.path.join(base_path, 'zapish_logger', 'version.py'), 'r', encoding='utf-8') as f:
+with open(os.path.join(base_path, 'nso_jsonrpc_requester', 'version.py'), 'r', encoding='utf-8') as f:
     exec(f.read(), version_py)
 
 # Reads pyproject.toml and converts to python objects
