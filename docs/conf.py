@@ -102,6 +102,7 @@ elif html_theme == 'sphinx_rtd_theme':
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+html_style = 'css/my_theme.css'
 
 # This is used fpr making a PDF using rinohtype
 # See https://www.mos6581.org/rinohtype/master/sphinx.html
