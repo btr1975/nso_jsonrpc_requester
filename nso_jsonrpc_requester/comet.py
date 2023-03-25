@@ -78,7 +78,7 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
         try:
             return self.__comet()['result']
 
-        except Exception as e:  # pragma: no cover
+        except Exception as err:  # pragma: no cover
             self.stop_comet()
 
     def subscribe_changes(self, path):
@@ -370,10 +370,10 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
         """
         if self.comet_started != wanted_state:
             if self.comet_started:
-                raise Exception('Comet is already running!!')
+                raise Exception('Comet is already running!!')  # pylint: disable=broad-exception-raised
 
             if not self.comet_started:
-                raise Exception('Comet is not running!!')
+                raise Exception('Comet is not running!!')  # pylint: disable=broad-exception-raised
 
 
 if __name__ == '__main__':  # pragma: no cover

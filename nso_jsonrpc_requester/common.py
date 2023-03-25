@@ -36,8 +36,9 @@ class NsoJsonRpcCommon:
 
     """
 
-    def __init__(self, protocol: str = 'http', ip: str = '127.0.0.1', port: str = '8080',
-                 username: str = 'admin', password: str = 'admin', ssl_verify: bool = True) -> None:
+    def __init__(self, protocol: str = 'http', ip: str = '127.0.0.1',  # pylint: disable=invalid-name
+                 port: str = '8080', username: str = 'admin', password: str = 'admin',
+                 ssl_verify: bool = True) -> None:
         self.username = username
         self.password = password
         self.ssl_verify = ssl_verify
@@ -53,7 +54,7 @@ class NsoJsonRpcCommon:
         # self.comet_id is a unique id (decided by the client) which must be given first in a call to the comet
         # method, and then to upcoming calls which trigger comet notifications.
         self.comet_id = f'remote-comet-{random.randint(1, 100000)}'
-        self.comet_handles = list()
+        self.comet_handles = []
         # self.transaction_handle starts as set to None, but is set when the new_trans method is called, it is
         # assigned by NSO
         self.transaction_handle = None
@@ -95,10 +96,11 @@ class NsoJsonRpcCommon:
                       }}
 
         if self.protocol == 'http':
-            response = requests.post(self.server_url, headers=self.headers, json=login_json)
+            response = requests.post(self.server_url, headers=self.headers, json=login_json, timeout=30)
 
         else:
-            response = requests.post(self.server_url, headers=self.headers, json=login_json, verify=self.ssl_verify)
+            response = requests.post(self.server_url, headers=self.headers, json=login_json,
+                                     verify=self.ssl_verify, timeout=30)
 
         if response.ok:
             self.cookies = response.cookies
@@ -277,7 +279,7 @@ class NsoJsonRpcCommon:
                       }}
 
         response = self.post_with_cookies(abort_json)
-
+# pylint: disable=duplicate-code
         if response.ok:
             return response.json()
 
@@ -328,11 +330,12 @@ class NsoJsonRpcCommon:
 
         """
         if self.protocol == 'http':
-            return requests.post(self.server_url, headers=self.headers, json=json_data, cookies=self.cookies)
+            return requests.post(self.server_url, headers=self.headers, json=json_data,
+                                 cookies=self.cookies, timeout=30)
 
         else:
             return requests.post(self.server_url, headers=self.headers, json=json_data, cookies=self.cookies,
-                                 verify=self.ssl_verify)
+                                 verify=self.ssl_verify, timeout=30)
 
     @staticmethod
     def print_pretty_json(json_data):  # pragma: no cover

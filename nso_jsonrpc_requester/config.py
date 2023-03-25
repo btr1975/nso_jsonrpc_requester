@@ -648,7 +648,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         :raises ValueError: if transaction_mode is not read_write
 
         """
-        flags = list()
+        flags = []
         if self.transaction_mode != 'read_write':
             raise ValueError(f'To use send_set_value_post the transaction mode must be read_'
                              f'write the current transaction mode is {self.transaction_mode}')
@@ -948,7 +948,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         else:  # pragma: no cover
             response.raise_for_status()
 
-    def run_query(self, qh):
+    def run_query(self, qh):  # pylint: disable=invalid-name
         """
         Method to run the query
 
@@ -979,7 +979,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         else:  # pragma: no cover
             response.raise_for_status()
 
-    def reset_query(self, qh):
+    def reset_query(self, qh):  # pylint: disable=invalid-name
         """
         Method to reset the query
 
@@ -1010,7 +1010,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         else:  # pragma: no cover
             response.raise_for_status()
 
-    def stop_query(self, qh):
+    def stop_query(self, qh):  # pylint: disable=invalid-name
         """
         Method to stop the query
 
