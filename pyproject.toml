@@ -1,0 +1,91 @@
+[build-system]
+requires = [
+    "setuptools>=67.6.0",
+    "wheel>=0.40.0"
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nso_jsonrpc_requester"
+dynamic = ["version", "readme", "dependencies"]
+requires-python = ">=3.8"
+description = "A simple logger that logs in a JSON format inspired by go zap"
+keywords = [
+    "cisco",
+    "nso",
+    "json",
+    "rpc",
+    "network",
+    "engineer",
+]
+authors = [
+  { name="Benjamin P. Trachtenberg", email="e_ben_75-python@yahoo.com" },
+]
+maintainers = [
+  {name = "Benjamin P. Trachtenberg", email = "e_ben_75-python@yahoo.com"},
+]
+license = {file = "LICENSE"}
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: POSIX",
+    "Operating System :: POSIX :: BSD",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+
+[project.urls]
+Documentation = "https://nso-jsonrpc-requester.readthedocs.io/en/latest"
+Source = "https://github.com/btr1975/nso_jsonrpc_requester"
+Tracker = "https://github.com/btr1975/nso_jsonrpc_requester/issues"
+
+[tool.setuptools.packages.find]
+include = [
+    "nso_jsonrpc_requester*",
+]
+
+# Add or remove file extensions to include the data
+[tool.setuptools.package-data]
+"*" = ["*.txt", "*.rst"]
+
+[tool.setuptools]
+zip-safe = false
+
+[tool.setuptools.dynamic]
+version = {attr = "zapish_logger.version.__version__"}
+readme = {file = "README.md", content-type = "text/markdown"}
+dependencies = {file = "requirements.txt"}
+
+[tool.distutils.bdist_wheel]
+universal = true
+
+[tool.pytest.ini_options]
+addopts = "--strict-markers"
+markers = [
+    "place_holder: marks tests as place_holder (deselect with -m 'not place_holder')",
+]
+
+[tool.coverage.run]
+command_line= "-m pytest -vvv"
+
+[tool.coverage.report]
+include = [
+    "nso_jsonrpc_requester/*"
+]
+
+[tool.pylint]
+max-line-length = 120
+# This allows pylint to complain on FIXME and XXX notes
+notes = [
+    "FIXME",
+    "XXX",
+]

@@ -1,8 +1,0 @@
-[run]
-command_line= -m pytest
-omit =
-	venv/*
-
-[report]
-include =
-    nso_jsonrpc_requester/*
