@@ -58,16 +58,16 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
 
         """
         if not isinstance(path, str):
-            raise TypeError('param path must be of type string but received {}'.format(type(path)))
+            raise TypeError(f'param path must be of type string but received {type(path)}')
 
         if result_as not in {'string', 'json'}:
             raise KeyError('param result_as must be one of these {"string", "json"}')
 
         if not isinstance(with_oper, bool):
-            raise TypeError('param with_oper must be of type boolean but received {}'.format(type(with_oper)))
+            raise TypeError(f'param with_oper must be of type boolean but received {type(with_oper)}')
 
         if not isinstance(max_size, int):
-            raise TypeError('param max_size must be of type integer but received {}'.format(type(max_size)))
+            raise TypeError(f'param max_size must be of type integer but received {type(max_size)}')
 
         show_config_json = {'jsonrpc': '2.0',
                             'id': self.request_id,
@@ -105,7 +105,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
 
         """
         if not isinstance(path, str):
-            raise TypeError('param path must be of type string but received {}'.format(type(path)))
+            raise TypeError(f'param path must be of type string but received {type(path)}')
 
         if result_as not in {'paths', 'target', 'list-target'}:
             raise KeyError('param result_as must be one of these {"paths", "target", "list-target"}')
@@ -147,14 +147,14 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
 
         """
         if not isinstance(path, str):
-            raise TypeError('param path must be of type string but received {}'.format(type(path)))
+            raise TypeError(f'param path must be of type string but received {type(path)}')
 
         if not isinstance(skip_grouping, bool):
-            raise TypeError('param skip_grouping must be of type boolean but received {}'.format(type(skip_grouping)))
+            raise TypeError(f'param skip_grouping must be of type boolean but received {type(skip_grouping)}')
 
         if keys:
             if not isinstance(keys, list):
-                raise TypeError('param keys must be of type list but received {}'.format(type(keys)))
+                raise TypeError(f'param keys must be of type list but received {type(keys)}')
 
             show_config_json = {'jsonrpc': '2.0',
                                 'id': self.request_id,
@@ -201,11 +201,11 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
 
         """
         if not isinstance(path, str):
-            raise TypeError('param path must be of type string but received {}'.format(type(path)))
+            raise TypeError(f'param path must be of type string but received {type(path)}')
 
         if input_data:
             if not isinstance(input_data, dict):
-                raise TypeError('param input must be of type dict but received {}'.format(type(input_data)))
+                raise TypeError(f'param input must be of type dict but received {type(input_data)}')
 
         if input_data:
             run_action_json = {'jsonrpc': '2.0',
@@ -248,7 +248,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
 
         """
         if not isinstance(path, str):
-            raise TypeError('param path must be of type string but received {}'.format(type(path)))
+            raise TypeError(f'param path must be of type string but received {type(path)}')
 
         get_schema_json = {'jsonrpc': '2.0',
                            'id': self.request_id,
@@ -280,7 +280,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
 
         """
         if not isinstance(path, str):
-            raise TypeError('param path must be of type string but received {}'.format(type(path)))
+            raise TypeError(f'param path must be of type string but received {type(path)}')
 
         get_list_keys_json = {'jsonrpc': '2.0',
                               'id': self.request_id,
@@ -315,10 +315,10 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
 
         """
         if not isinstance(path, str):
-            raise TypeError('param path must be of type string but received {}'.format(type(path)))
+            raise TypeError(f'param path must be of type string but received {type(path)}')
 
         if not isinstance(check_default, bool):
-            raise TypeError('param check_default must be of type boolean but received {}'.format(type(check_default)))
+            raise TypeError(f'param check_default must be of type boolean but received {type(check_default)}')
 
         get_value_json = {'jsonrpc': '2.0',
                           'id': self.request_id,
@@ -357,13 +357,13 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
 
         """
         if not isinstance(path, str):
-            raise TypeError('param path must be of type string but received {}'.format(type(path)))
+            raise TypeError(f'param path must be of type string but received {type(path)}')
 
         if not isinstance(leafs, list):
-            raise TypeError('param leafs must be of type list but received {}'.format(type(leafs)))
+            raise TypeError(f'param leafs must be of type list but received {type(leafs)}')
 
         if not isinstance(check_default, bool):
-            raise TypeError('param check_default must be of type boolean but received {}'.format(type(check_default)))
+            raise TypeError(f'param check_default must be of type boolean but received {type(check_default)}')
 
         get_values_json = {'jsonrpc': '2.0',
                            'id': self.request_id,
@@ -398,11 +398,11 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
 
         """
         if self.transaction_mode != 'read_write':
-            raise ValueError('To use send_create_post the transaction mode must be read_'
-                             'write the current transaction mode is {}'.format(self.transaction_mode))
+            raise ValueError(f'To use send_create_post the transaction mode must be read_'
+                             f'write the current transaction mode is {self.transaction_mode}')
 
         if not isinstance(path, str):
-            raise TypeError('param path must be of type string but received {}'.format(type(path)))
+            raise TypeError(f'param path must be of type string but received {type(path)}')
 
         create_json = {'jsonrpc': '2.0',
                        'id': self.request_id,
@@ -434,7 +434,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
 
         """
         if not isinstance(path, str):
-            raise TypeError('param path must be of type string but received {}'.format(type(path)))
+            raise TypeError(f'param path must be of type string but received {type(path)}')
 
         exists_json = {'jsonrpc': '2.0',
                        'id': self.request_id,
@@ -469,10 +469,10 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
 
         """
         if not isinstance(path, str):
-            raise TypeError('param path must be of type string but received {}'.format(type(path)))
+            raise TypeError(f'param path must be of type string but received {type(path)}')
 
         if not isinstance(choice, str):
-            raise TypeError('param choice must be of type string but received {}'.format(type(choice)))
+            raise TypeError(f'param choice must be of type string but received {type(choice)}')
 
         get_case_json = {'jsonrpc': '2.0',
                          'id': self.request_id,
@@ -515,14 +515,14 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
 
         """
         if self.transaction_mode != 'read_write':
-            raise ValueError('To use send_create_post the transaction mode must be read_'
-                             'write the current transaction mode is {}'.format(self.transaction_mode))
+            raise ValueError(f'To use send_create_post the transaction mode must be read_'
+                             f'write the current transaction mode is {self.transaction_mode}')
 
         if not isinstance(data, str):
-            raise TypeError('param data must be of type string but received {}'.format(type(data)))
+            raise TypeError(f'param data must be of type string but received {type(data)}')
 
         if not isinstance(path, str):
-            raise TypeError('param path must be of type string but received {}'.format(type(path)))
+            raise TypeError(f'param path must be of type string but received {type(path)}')
 
         if data_format not in {'json', 'xml'}:
             raise KeyError('param format must be one of these {"json", "xml"}')
@@ -569,14 +569,14 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
 
         """
         if self.transaction_mode != 'read_write':
-            raise ValueError('To use send_set_value_post the transaction mode must be read_'
-                             'write the current transaction mode is {}'.format(self.transaction_mode))
+            raise ValueError(f'To use send_set_value_post the transaction mode must be read_'
+                             f'write the current transaction mode is {self.transaction_mode}')
 
         if not isinstance(path, str):
-            raise TypeError('param path must be of type string but received {}'.format(type(path)))
+            raise TypeError(f'param path must be of type string but received {type(path)}')
 
         if not isinstance(dry_run, bool):
-            raise TypeError('param dry_run must be of type boolean but received {}'.format(type(dry_run)))
+            raise TypeError(f'param dry_run must be of type boolean but received {type(dry_run)}')
 
         set_value_json = {'jsonrpc': '2.0',
                           'id': self.request_id,
@@ -608,8 +608,8 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
 
         """
         if self.transaction_mode != 'read_write':
-            raise ValueError('To use send_set_value_post the transaction mode must be read_'
-                             'write the current transaction mode is {}'.format(self.transaction_mode))
+            raise ValueError(f'To use send_set_value_post the transaction mode must be read_'
+                             f'write the current transaction mode is {self.transaction_mode}')
 
         validate_commit_json = {'jsonrpc': '2.0',
                                 'id': self.request_id,
@@ -650,20 +650,20 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         """
         flags = list()
         if self.transaction_mode != 'read_write':
-            raise ValueError('To use send_set_value_post the transaction mode must be read_'
-                             'write the current transaction mode is {}'.format(self.transaction_mode))
+            raise ValueError(f'To use send_set_value_post the transaction mode must be read_'
+                             f'write the current transaction mode is {self.transaction_mode}')
 
         if output not in {'cli', 'native', 'xml'}:
-            raise KeyError('output should be one of these cli, native, xml you entered {}'.format(output))
+            raise KeyError(f'output should be one of these cli, native, xml you entered {output}')
 
         if not isinstance(dry_run, bool):
-            raise TypeError('param dry_run must be of type boolean but received {}'.format(type(dry_run)))
+            raise TypeError(f'param dry_run must be of type boolean but received {type(dry_run)}')
 
         if not isinstance(reverse, bool):
-            raise TypeError('param reverse must be of type boolean but received {}'.format(type(reverse)))
+            raise TypeError(f'param reverse must be of type boolean but received {type(reverse)}')
 
         if dry_run:
-            flags.append('dry-run={}'.format(output))
+            flags.append(f'dry-run={output}')
             if output == 'native' and reverse:
                 flags.append('dry-run-reverse')
 
@@ -698,11 +698,11 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
 
         """
         if self.transaction_mode != 'read_write':
-            raise ValueError('To use send_create_post the transaction mode must be read_'
-                             'write the current transaction mode is {}'.format(self.transaction_mode))
+            raise ValueError(f'To use send_create_post the transaction mode must be read_'
+                             f'write the current transaction mode is {self.transaction_mode}')
 
         if not isinstance(path, str):
-            raise TypeError('param path must be of type string but received {}'.format(type(path)))
+            raise TypeError(f'param path must be of type string but received {type(path)}')
 
         delete_json = {'jsonrpc': '2.0',
                        'id': self.request_id,
@@ -755,7 +755,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
 
         """
         if not isinstance(name, str):
-            raise TypeError('param name must be of type string but received {}'.format(type(name)))
+            raise TypeError(f'param name must be of type string but received {type(name)}')
 
         get_template_variables_json = {'jsonrpc': '2.0',
                                        'id': self.request_id,
@@ -793,7 +793,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
 
         """
         if not isinstance(xpath_expr, str):
-            raise TypeError('param xpath_expr must be of type string but received {}'.format(type(xpath_expr)))
+            raise TypeError(f'param xpath_expr must be of type string but received {type(xpath_expr)}')
 
         if result_as not in {'string', 'keypath-value', 'leaf_value_as_string'}:
             raise ValueError("param result_as must be one of the following {'string', 'keypath-value', "
@@ -871,44 +871,44 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
         else:
             if xpath_expr:
                 if not isinstance(xpath_expr, str):
-                    raise TypeError('param xpath_expr must be of type string but received {}'.format(type(xpath_expr)))
+                    raise TypeError(f'param xpath_expr must be of type string but received {type(xpath_expr)}')
 
                 else:
                     query_json['params'].update({'xpath_expr': xpath_expr})
 
             elif path:
                 if not isinstance(path, str):
-                    raise TypeError('param path must be of type string but received {}'.format(type(path)))
+                    raise TypeError(f'param path must be of type string but received {type(path)}')
 
                 else:
                     query_json['params'].update({'path': path})
 
         if selection:
             if not isinstance(selection, list):
-                raise TypeError('param selection must be of type list but received {}'.format(type(selection)))
+                raise TypeError(f'param selection must be of type list but received {type(selection)}')
 
             else:
                 query_json['params'].update({'selection': selection})
 
         if chunk_size:
             if not isinstance(chunk_size, int) and chunk_size < 1:
-                raise TypeError('param chunk_size must be of int list but received {} '
-                                'or it is less than 1'.format(type(chunk_size)))
+                raise TypeError(f'param chunk_size must be of int list but received {type(chunk_size)} '
+                                f'or it is less than 1')
 
             else:
                 query_json['params'].update({'chunk_size': chunk_size})
 
         if initial_offset:
             if not isinstance(initial_offset, int):
-                raise TypeError('param initial_offset must be of type int but '
-                                'received {}'.format(type(initial_offset)))
+                raise TypeError(f'param initial_offset must be of type int but '
+                                f'received {type(initial_offset)}')
 
             else:
                 query_json['params'].update({'initial_offset': initial_offset})
 
         if sort:
             if not isinstance(sort, list):
-                raise TypeError('param sort must be of type list but received {}'.format(type(sort)))
+                raise TypeError(f'param sort must be of type list but received {type(sort)}')
 
             else:
                 query_json['params'].update({'sort': sort})
@@ -921,14 +921,14 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
                 query_json['params'].update({'sort_order': sort_order})
 
         if not isinstance(include_total, bool):
-            raise TypeError('param include_total must be of type bool but received {}'.format(type(include_total)))
+            raise TypeError(f'param include_total must be of type bool but received {type(include_total)}')
 
         else:
             query_json['params'].update({'include_total': include_total})
 
         if context_node:
             if not isinstance(context_node, str):
-                raise TypeError('param context_node must be of type string but received {}'.format(type(context_node)))
+                raise TypeError(f'param context_node must be of type string but received {type(context_node)}')
 
             else:
                 query_json['params'].update({'context_node': context_node})
@@ -962,7 +962,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
 
         """
         if not isinstance(qh, int):
-            raise TypeError('param qh must be of type int but received {}'.format(type(qh)))
+            raise TypeError(f'param qh must be of type int but received {type(qh)}')
 
         query_json = {'jsonrpc': '2.0',
                       'id': self.request_id,
@@ -993,7 +993,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
 
         """
         if not isinstance(qh, int):
-            raise TypeError('param qh must be of type int but received {}'.format(type(qh)))
+            raise TypeError(f'param qh must be of type int but received {type(qh)}')
 
         query_json = {'jsonrpc': '2.0',
                       'id': self.request_id,
@@ -1024,7 +1024,7 @@ class NsoJsonRpcConfig(NsoJsonRpcCommon):
 
         """
         if not isinstance(qh, int):
-            raise TypeError('param qh must be of type int but received {}'.format(type(qh)))
+            raise TypeError(f'param qh must be of type int but received {type(qh)}')
 
         query_json = {'jsonrpc': '2.0',
                       'id': self.request_id,

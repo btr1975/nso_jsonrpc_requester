@@ -97,7 +97,7 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
         self.__check_comet_state(True)
 
         if not isinstance(path, str):
-            raise TypeError('param path must be of type string but received {}'.format(type(path)))
+            raise TypeError(f'param path must be of type string but received {type(path)}')
 
         subscribe_changes_json = {'jsonrpc': '2.0',
                                   'id': self.request_id,
@@ -136,10 +136,10 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
         self.__check_comet_state(True)
 
         if not isinstance(path, str):
-            raise TypeError('param path must be of type string but received {}'.format(type(path)))
+            raise TypeError(f'param path must be of type string but received {type(path)}')
 
         if not isinstance(interval, int):
-            raise TypeError('param interval must be of type integer but received {}'.format(type(interval)))
+            raise TypeError(f'param interval must be of type integer but received {type(interval)}')
 
         subscribe_poll_leaf_json = {'jsonrpc': '2.0',
                                     'id': self.request_id,
@@ -176,7 +176,7 @@ class NsoJsonRpcComet(NsoJsonRpcCommon):
         self.__check_comet_state(True)
 
         if not isinstance(path, str):
-            raise TypeError('param path must be of type string but received {}'.format(type(path)))
+            raise TypeError(f'param path must be of type string but received {type(path)}')
 
         subscribe_cdboper_json = {'jsonrpc': '2.0',
                                   'id': self.request_id,
